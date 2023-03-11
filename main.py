@@ -1,4 +1,4 @@
-from dictionnaire import dico
+
 from brute_force import bf
 import gpu
 from numba import cuda

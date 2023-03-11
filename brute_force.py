@@ -1,7 +1,6 @@
 import hashlib
 import sys
-from verification import verification_sha1 
-from verification import verification_MD5
+
 from numba import cuda
 
 #mdp_test est le mot de passe créé à partir des combinaisons de lettre AVANT de passer dans l'algo de hash
