@@ -1,4 +1,4 @@
-from numba import cuda
+from numba import cuda, types,typed
 import brute_force as b
 import hashlib
 
@@ -11,7 +11,7 @@ def kernel_combinaisons(mdp, hash):
     i = tx + bx * bw
     #taille maximale que fait notre mdp
     MAX_LENGTH = 15
-    
+    mdp = typed.List.empty_list(types.str)
     if i < MAX_LENGTH: #Les différentes tailles de mdp à trouver
         for i in range(len(all)):
             mdp += all[i]
