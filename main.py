@@ -8,7 +8,7 @@ import time
 
 
 HASH = 'a9993e364706816aba3e25717850c26c9cd0d89d'
-mdp = numpy.empty()
+mdp = numpy.empty(shape=0)
 d_HASH = cuda.to_device(HASH)
 d_mdp = cuda.to_device(mdp)
 start = time.perf_counter()
