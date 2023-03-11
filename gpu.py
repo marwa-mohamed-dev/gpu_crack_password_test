@@ -1,4 +1,4 @@
-from numba import cuda, types,typed
+from numba import cuda
 import brute_force as b
 import hashlib
 
@@ -11,13 +11,11 @@ def kernel_combinaisons(mdp, hash):
     i = tx + bx * bw
     #taille maximale que fait notre mdp
     MAX_LENGTH = 15
-    mdp = typed.List.empty_list(types.str)
+    
     if i < MAX_LENGTH: #Les différentes tailles de mdp à trouver
         for i in range(len(all)):
             mdp += all[i]
             if(hashlib.sha1(mdp.encode()).hexdigest() == hash) :
                 print("Le mot de passe est : ", mdp)
                 return mdp
-
-
         kernel_combinaisons( mdp,  hash) #Recursion avec caractère suivant)
