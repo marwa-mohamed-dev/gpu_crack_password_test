@@ -37,7 +37,7 @@ def bf (type_hash, mdp) :
 #
 #      print("Tous les mots de passe de", i, "caractères ont été testé.")
 
-@cuda.jit 
+@cuda.jit(nopython=True)
 def combinaisons (hash, currentlength, maxlength, mdp_test, all, type_hash) : #boucle de création des combinaisons
     if currentlength > maxlength:
 
