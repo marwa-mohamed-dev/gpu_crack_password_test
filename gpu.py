@@ -14,10 +14,10 @@ def kernel_combinaisons(mdp, hash):
     
     if i < MAX_LENGTH: #Les différentes tailles de mdp à trouver
         for i in range(len(all)):
-            mdp_test += all[i]
-            if(hashlib.sha1(mdp_test.encode()).hexdigest() == hash) :
-                print("Le mot de passe est : ", mdp_test)
-                return mdp_test
+            mdp += all[i]
+            if(hashlib.sha1(mdp.encode()).hexdigest() == hash) :
+                print("Le mot de passe est : ", mdp)
+                return mdp
 
 
-        kernel_combinaisons( mdp_test,  hash) #Recursion avec caractère suivant)
+        kernel_combinaisons( mdp,  hash) #Recursion avec caractère suivant)
