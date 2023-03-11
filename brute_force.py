@@ -50,8 +50,8 @@ def combinaisons (hash, currentlength, maxlength, mdp_test, all, type_hash) : #b
          #verification_sha1(hash, mdp_test+all[i]) #on vérifie si la string obtenue est notre mdp
          if(hashlib.sha1(mdp_test+all[i].encode()).hexdigest() == hash) :
           print("Le mot de passe est : ", mdp_test+all[i])
-      elif type_hash == 'MD5' :
-        verification_MD5(hash, mdp_test+all[i]) #on vérifie si la string obtenue est notre mdp
+      # elif type_hash == 'MD5' :
+      #   verification_MD5(hash, mdp_test+all[i]) #on vérifie si la string obtenue est notre mdp
 
       combinaisons (hash, currentlength+1, maxlength, mdp_test+all[i], all, type_hash) #Recursion avec caractère suivant
 
