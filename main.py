@@ -1,9 +1,9 @@
-
+import hashlib
 from brute_force import bf
 import gpu
 from numba import cuda
 # import tensorflow as tf
-
+print(hashlib.algorithms_available)
 HASH = ''
 mdp = 'a9993e364706816aba3e25717850c26c9cd0d89d'
 d_HASH = cuda.to_device(HASH)
