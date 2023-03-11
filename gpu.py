@@ -8,11 +8,11 @@ def kernel_combinaisons(mdp, hash):
     tx = cuda.threadIdx.x
     bx = cuda.blockIdx.x
     bw = cuda.blockDim.x
-    i = tx + bx * bw
+    max = tx + bx * bw
     #taille maximale que fait notre mdp
     MAX_LENGTH = 15
     
-    if i < MAX_LENGTH: #Les différentes tailles de mdp à trouver
+    if i < max: #Les différentes tailles de mdp à trouver
         for i in range(len(all)):
             mdp += all[i]
             if(hashlib.sha1(mdp.encode()).hexdigest() == hash) :
