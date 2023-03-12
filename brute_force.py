@@ -1,6 +1,7 @@
 import hashlib
 import sys
-
+from verification import verification_sha1 
+from verification import verification_MD5
 from numba import cuda
 
 #mdp_test est le mot de passe créé à partir des combinaisons de lettre AVANT de passer dans l'algo de hash
@@ -39,22 +40,29 @@ def bf (type_hash, mdp) :
 
 
 def combinaisons (hash, currentlength, maxlength, mdp_test, all, type_hash) : #boucle de création des combinaisons
+    # if currentlength > maxlength:
+
+    #     return
+
+    # for i in range(len(all)):
+
+    #   if type_hash == 'sha1' :
+    #      verification_sha1(hash, mdp_test+all[i]) #on vérifie si la string obtenue est notre mdp
+    #   #    mdp_test += all[i]
+    #   #    if(hashlib.sha1(mdp_test.encode()).hexdigest() == hash) :
+    #   #     print("Le mot de passe est : ", mdp_test+all[i])
+    #   #     return mdp_test
+    #   # # elif type_hash == 'MD5' :
+    #   #   verification_MD5(hash, mdp_test+all[i]) #on vérifie si la string obtenue est notre mdp
+
+    #   combinaisons (hash, currentlength+1, maxlength, mdp_test, all, type_hash) #Recursion avec caractère suivant
     if currentlength > maxlength:
-
-        return
-
+      return
     for i in range(len(all)):
-
       if type_hash == 'sha1' :
-         #verification_sha1(hash, mdp_test+all[i]) #on vérifie si la string obtenue est notre mdp
-         mdp_test += all[i]
-         print(mdp_test)
-         print(type(hashlib.sha1(mdp_test.encode()).hexdigest()))
-         print(type(mdp_test))
-         if(hashlib.sha1(mdp_test.encode()).hexdigest() == hash) :
-          print("Le mot de passe est : ", mdp_test+all[i])
-      # elif type_hash == 'MD5' :
-      #   verification_MD5(hash, mdp_test+all[i]) #on vérifie si la string obtenue est notre mdp
+         verification_sha1(hash, mdp_test+all[i]) #on vérifie si la string obtenue est notre mdp
 
-      combinaisons (hash, currentlength+1, maxlength, mdp_test, all, type_hash) #Recursion avec caractère suivant
+      elif type_hash == 'MD5' :
+        verification_MD5(hash, mdp_test+all[i]) #on vérifie si la string obtenue est notre mdp
 
+      combinaisons (hash, currentlength+1, maxlength, mdp_test+all[i], all, type_hash) #Recursion avec caractère suivant
