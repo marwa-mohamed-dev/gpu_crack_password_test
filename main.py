@@ -24,7 +24,7 @@ MAX_LENGTH = 15
 d_HASH = cuda.to_device(HASH)
 d_mdp = cuda.to_device(mdp)
 start = time.perf_counter()
-gpu.kernel_combinaisons[5,5](d_mdp, d_HASH)
+gpu.kernel_combinaisons[5,2](d_mdp, d_HASH)
 cuda.syncthreads()
 end = time.perf_counter()
 mdp = numpy.empty(shape=d_mdp.shape, dtype=d_mdp.dtype)
