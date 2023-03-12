@@ -11,7 +11,13 @@ HASH = 'a9993e364706816aba3e25717850c26c9cd0d89d'
 mdp = numpy.empty(shape=0)
 
 start = time.perf_counter()
-bf.combinaisons(mdp, 0, i, '', all, 'sha1')
+#taille maximale que fait notre mdp
+MAX_LENGTH = 15
+
+for i in range(MAX_LENGTH): #Les différentes tailles de mdp à trouver
+    bf.combinaisons(mdp, 0, i, '', all, 'sha1')
+
+    print("Tous les mots de passe de", i, "caractères ont été testé.")
 end = time.perf_counter()
 print("elapsed time before cuda implementation = {}s".format((end - start)))
 
