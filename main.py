@@ -1,5 +1,5 @@
 import hashlib
-from brute_force import bf
+from brute_force import combinaisons
 import gpu
 from numba import cuda
 import numpy
@@ -15,7 +15,7 @@ start = time.perf_counter()
 MAX_LENGTH = 15
 
 for i in range(MAX_LENGTH): #Les différentes tailles de mdp à trouver
-    bf.combinaisons(mdp, 0, i, '', all, 'sha1')
+    combinaisons(mdp, 0, i, '', all, 'sha1')
 
     print("Tous les mots de passe de", i, "caractères ont été testé.")
 end = time.perf_counter()
