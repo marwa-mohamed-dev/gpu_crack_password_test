@@ -9,6 +9,12 @@ import time
 
 HASH = 'a9993e364706816aba3e25717850c26c9cd0d89d'
 mdp = numpy.empty(shape=0)
+
+start = time.perf_counter()
+bf.combinaisons(mdp, 0, i, '', all, 'sha1')
+end = time.perf_counter()
+print("elapsed time before cuda implementation = {}s".format((end - start)))
+
 d_HASH = cuda.to_device(HASH)
 d_mdp = cuda.to_device(mdp)
 start = time.perf_counter()
@@ -16,5 +22,8 @@ gpu.kernel_combinaisons[5,5](d_mdp, d_HASH)
 end = time.perf_counter()
 mdp = numpy.empty(shape=d_mdp.shape, dtype=d_mdp.dtype)
 d_mdp.copy_to_host(mdp)
+HASH = numpy.empty(shape=d_HASH.shape, dtype=d_HASH.dtype)
+d_HASH.copy_to_host(HASH)
 print(mdp)
-print("Elapsed (after compilation) = {}s".format((end - start)))
+print(HASH)
+print("elapsed time before cuda implementation= {}s".format((end - start)))
