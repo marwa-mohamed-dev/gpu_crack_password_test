@@ -14,12 +14,12 @@ start = time.perf_counter()
 #taille maximale que fait notre mdp
 MAX_LENGTH = 15
 
-for i in range(MAX_LENGTH): #Les différentes tailles de mdp à trouver
-    combinaisons(mdp, 0, i, '', all, 'sha1')
+# for i in range(MAX_LENGTH): #Les différentes tailles de mdp à trouver
+#     combinaisons(mdp, 0, i, '', all, 'sha1')
 
-    print("Tous les mots de passe de", i, "caractères ont été testé.")
-end = time.perf_counter()
-print("elapsed time before cuda implementation = {}s".format((end - start)))
+#     print("Tous les mots de passe de", i, "caractères ont été testé.")
+# end = time.perf_counter()
+# print("elapsed time before cuda implementation = {}s".format((end - start)))
 
 d_HASH = cuda.to_device(HASH)
 d_mdp = cuda.to_device(mdp)
